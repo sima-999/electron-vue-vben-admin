@@ -1,4 +1,7 @@
 import { defineApplicationConfig } from '@vben/vite-config';
+import renderer from 'vite-plugin-electron-renderer';
+import svgLoader from 'vite-svg-loader';
+import pkg from './package.json';
 
 export default defineApplicationConfig({
   overrides: {
@@ -14,7 +17,10 @@ export default defineApplicationConfig({
         'ant-design-vue/es/locale/en_US',
       ],
     },
+    plugins: [renderer(), svgLoader()],
     server: {
+      host: pkg.env.HOST,
+      port: pkg.env.PORT,
       proxy: {
         '/basic-api': {
           target: 'http://localhost:3000',
@@ -31,7 +37,7 @@ export default defineApplicationConfig({
           rewrite: (path) => path.replace(new RegExp(`^/upload`), ''),
         },
       },
-      open: true, // 项目启动后，自动打开
+      // open: true, // 项目启动后，自动打开
       warmup: {
         clientFiles: ['./index.html', './src/{views,components}/*'],
       },

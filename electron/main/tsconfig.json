@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@type/*": ["../types/*"],
+      "@main/*": ["./*"],
+      "@common/*": ["../common/*"],
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+  },
+  "include": ["./**/*.ts", "../types/**/*.ts", "../common/**/*.ts", "../renderer/src/global.d.ts"]
+}

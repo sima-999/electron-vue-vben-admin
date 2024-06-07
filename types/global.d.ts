@@ -6,8 +6,24 @@ import type {
   FunctionalComponent,
   PropType as VuePropType,
 } from 'vue';
+import type {
+  IpcMainHandleEventProxy,
+  IpcRenderer,
+  IpcRendererOnEventCalleeProxy,
+} from '@type/ipc';
 
 declare global {
+  interface Window {
+    // Expose some Api through preload script
+    ipcRenderer: IpcRenderer;
+    removeLoading: () => void;
+    $message: MessageApiInjection;
+    $dialog: DialogApiInjection;
+    updateLoadingText: (text: string) => void;
+
+    main: IpcMainHandleEventProxy;
+    renderer: IpcRendererOnEventCalleeProxy;
+  }
   const __APP_INFO__: {
     pkg: {
       name: string;
