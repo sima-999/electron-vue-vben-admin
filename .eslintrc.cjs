@@ -3,5 +3,6 @@ module.exports = {
   extends: ['@vben'],
   rules: {
     'no-undef': 'off',
+    // 'no-unused-vars': 'off',
   },
 };

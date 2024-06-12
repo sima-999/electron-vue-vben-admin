@@ -18,6 +18,19 @@ export default defineApplicationConfig({
       ],
     },
     plugins: [renderer(), svgLoader()],
+    base: './',
+    build: {
+      emptyOutDir: true,
+      sourcemap: true,
+      outDir: './dist/renderer',
+      rollupOptions: {
+        output: {
+          entryFileNames: `assets/[name].js`,
+          chunkFileNames: `assets/[name].js`,
+          assetFileNames: `assets/[name].[ext]`,
+        },
+      },
+    },
     server: {
       host: pkg.env.HOST,
       port: pkg.env.PORT,
