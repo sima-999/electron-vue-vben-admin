@@ -24,7 +24,9 @@
   "type": "module",
   "main": "dist/main/index.cjs",
   "scripts": {
+    "app:build": "vue-tsc --noEmit && vite build -c electron/main/vite.config.ts && vite build -c electron/preload/vite.config.ts && vite build && electron-builder",
     "app:dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 node scripts/watch.mjs",
+    "app:quick-build": "vue-tsc --noEmit && vite build -c electron/main/vite.config.ts && vite build -c electron/preload/vite.config.ts && electron-builder",
     "bootstrap": "pnpm install",
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build",
     "build:analyze": "cross-env NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build --mode analyze",
@@ -86,7 +88,7 @@
     "@vueuse/core": "^10.9.0",
     "@zxcvbn-ts/core": "^3.0.4",
     "axios": "^1.6.8",
-    "chalk": "4",
+    "chalk": "4.1.2",
     "codemirror": "^5.65.16",
     "cropperjs": "^1.6.2",
     "crypto-js": "^4.2.0",
@@ -123,18 +125,6 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@electron-forge/cli": "^6.4.0",
-    "@electron-forge/maker-deb": "^6.4.0",
-    "@electron-forge/maker-rpm": "^6.4.0",
-    "@electron-forge/maker-squirrel": "^6.4.0",
-    "@electron-forge/maker-zip": "^6.4.0",
-    "@electron-forge/plugin-auto-unpack-natives": "^6.4.0",
-    "@electron-forge/plugin-fuses": "^6.4.0",
-    "@electron-forge/plugin-vite": "^6.4.0",
-    "@electron-forge/publisher-github": "^6.4.0",
-    "@electron-forge/publisher-s3": "^6.4.0",
-    "@electron/fuses": "^1.8.0",
-    "@electron/rebuild": "^3.2.9",
     "@iconify/json": "^2.2.203",
     "@purge-icons/generated": "^0.10.0",
     "@types/animejs": "^3.1.7",
@@ -166,6 +156,7 @@
     "czg": "^1.9.1",
     "date-fns": "^2.30.0",
     "electron": "^30.0.8",
+    "electron-builder": "^24.13.3",
     "electron-devtools-installer": "^3.2.0",
     "husky": "^9.0.11",
     "lint-staged": "15.2.2",
@@ -202,5 +193,6 @@
     "//": "Used in build scripts",
     "HOST": "192.168.6.179",
     "PORT": 5173
-  }
+  },
+  "postinstall": "electron-builder install-app-deps"
 }

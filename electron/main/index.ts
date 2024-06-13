@@ -39,7 +39,8 @@ async function createApp(): Promise<void> {
 
   const win = new WindowManager().getWindow();
   if (app.isPackaged || !isInDev()) {
-    win.loadFile(join(__dirname, '../../index.html'));
+    //引用的地址是打包后的地址
+    win.loadFile(join(__dirname, '../renderer/index.html'));
   } else {
     // 🚧 Use ['ENV_NAME'] avoid vite:define plugin
     const host = process.env.VITE_DEV_SERVER_HOST;
@@ -65,7 +66,7 @@ async function createApp(): Promise<void> {
     }
   }
   useHooks();
-  if (isInDev()) {
+  if (!isInDev()) {
     logger.warn('You are in development mode');
     win.webContents.on('did-frame-finish-load', () => {
       useDebug(win);
