@@ -15,7 +15,7 @@ class WindowManager implements Module {
       // backgroundColor: '#00000000',
       // frame: getPlatform() != 'windows',
       icon: join(__dirname, '../renderer/assets/icon.png'),
-      // titleBarOverlay: true,
+      titleBarOverlay: true,
       // frameless和titleBarStyle: 'hidden'同时开，会显示窗口控制按钮
       // titleBarStyle: 'hidden',
       width: 1920,
